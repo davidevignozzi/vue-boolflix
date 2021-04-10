@@ -88,18 +88,20 @@ header nav ul li a i{
 .film-description{
     display: none;
     text-align: center;
-    max-width: 250px;
+    max-width: 100%;
     color: white;
     position: relative;
-    bottom: 275px;
+    bottom: 300px;
+}
+.film-overview{
+    padding: 5px 5px;
+    font-size: 12px;
+    max-height: 225px;
+    overflow-y: scroll;
 }
 .film-img-container:hover .film-description{
     display: block;
-}
-.film-overview{
-    font-size: 12px;
-    height: 150px;
-    overflow-y: scroll;
+    cursor: pointer;
 }
 
 /* end main */

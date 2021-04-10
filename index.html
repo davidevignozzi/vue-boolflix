@@ -58,11 +58,11 @@
             <!-- main -->
             <main>
                 <div class="film-container">
-                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
+                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null && film.overview != ''">
                         <div class="film-img-container">
                             <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
                             <div class="film-description">
-                                <h2><span>{{film.title}}</span></h2>
+                                <h3><span>{{film.title}}</span></h2>
                                 <p class="film-overview">{{film.overview}}</p>
                             </div>
                         </div>
