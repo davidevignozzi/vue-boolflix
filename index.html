@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans&display=swap" rel="stylesheet">
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+        <div id="page-container">
+
+            <!-- nav bar -->
+            <header>
+                <nav>
+                    <!-- left part of navbar -->
+                    <div class="nav-left">
+                        <ul>
+                            <li class="logo"><a href="#"><img src="img/Netflix-logo.svg" alt="logo"></a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Serie Tv</a></li>
+                            <li><a href="#">Film</a></li>
+                            <li><a href="#">Nuovi e Popolari</a></li>
+                            <li><a href="#">La mia Lista</a></li>
+                        </ul>
+                    </div>
+                    <!-- left part of navbar -->
+
+                    <!-- right part of navbar -->
+                    <div class="nav-right">
+                        <ul>
+                            <li><a href="#"><input type="text" placeholder="Search" v-model="inSearch" @keydown.13="filmSearch"></a></li>
+                            <li><a href="#"><i @click="filmSearch" class=" search fas fa-search"></i></a></li>
+                            <li><a href="#"><i class="fas fa-gift"></i></a></li>
+                            <li><a href="#"><i class="fas fa-bell"></i></a></li>
+                            <li><a href="#"></a><i class="fas fa-sliders-h"></i></li>
+                        </ul>
+                    </div>
+                    <!-- right part of navbar -->
+
+                </nav>
+            </header>
+            <!-- nav bar -->
+
+            <!-- main -->
+            <main>
+                <div class="film-container">
+                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
+                        <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
+                        <!-- <div class="film-description">
+                            <h2><span>{{film.title}}</span></h2>
+                        </div> -->
+                    </div>
+                </div>
+            </main>
+            <!-- main -->
+
+        </div>
+
+    </div>
+    
+    <!-- js -->
+    <script src="js/script.js"></script>
+</body>
+</html>
