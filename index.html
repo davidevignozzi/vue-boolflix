@@ -27,10 +27,11 @@
             <!-- nav bar -->
             <header>
                 <nav>
+                    
                     <!-- left part of navbar -->
                     <div class="nav-left">
                         <ul>
-                            <li class="logo"><a href="#"><img src="img/Netflix-logo.svg" alt="logo"></a></li>
+                            <li class="logo"><a href="#"><img src="img/boolflix.png" alt="logo"></a></li>
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Serie Tv</a></li>
                             <li><a href="#">Film</a></li>
@@ -59,17 +60,21 @@
             <!-- main -->
             <main>
                 <div class="film-container">
+                    <!-- cards -->
                     <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
                         <div class="film-img-container">
                             <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
+                            <!-- hover: film description -->
                             <div class="film-description">
                                 <h3><span>{{film.title}}</span></h2>
                                 <p>Titolo originale: <span>{{film.original_title}}</span></p>
                                 <p>Lingia originale: <span>{{film.original_language}}</span></p>
                                 <p>Voto: <span>{{film.vote_average}}</span></p>
                             </div>
+                            <!-- end hover: film description -->
                         </div>
                     </div>
+                    <!-- end cards -->
                 </div>
             </main>
             <!-- main -->

@@ -39,6 +39,9 @@ header nav input{
     padding: 5px;
     color: white;
 }
+header nav input:focus {
+    outline: none;
+}
 /* end search */
 
 /* logo */
@@ -49,9 +52,6 @@ header nav input{
 }
 /* end logo */
 
-header nav input:focus {
-    outline: none;
-  }
 header nav ul li{
     padding: 18px 10px;
 }
@@ -64,6 +64,8 @@ header nav ul li a i{
 /* end navbar */
 
 /* main */
+
+/* film cards */
 .film-container{
     display: flex;
     justify-content: space-between;
@@ -85,6 +87,8 @@ header nav ul li a i{
     cursor: pointer;
     opacity: 0.1;
 }
+
+/* hover: film description */
 .film-description{
     display: none;
     text-align: center;
@@ -110,4 +114,6 @@ header nav ul li a i{
 .film-description p span{
     color: white;
 }
+/* end hover: film description */
+/* end film cards */
 /* end main */
