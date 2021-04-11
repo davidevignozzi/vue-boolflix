@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- axios -->
@@ -58,12 +59,14 @@
             <!-- main -->
             <main>
                 <div class="film-container">
-                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null && film.overview != ''">
+                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
                         <div class="film-img-container">
                             <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
                             <div class="film-description">
                                 <h3><span>{{film.title}}</span></h2>
-                                <p class="film-overview">{{film.overview}}</p>
+                                <p>Titolo originale: <span>{{film.original_title}}</span></p>
+                                <p>Lingia originale: <span>{{film.original_language}}</span></p>
+                                <p>Voto: <span>{{film.vote_average}}</span></p>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,7 @@
 }
 body{
     background-color: #141414;
+    font-family: 'Martel Sans', sans-serif;
 }
 ul{
     list-style: none;  
@@ -16,7 +17,6 @@ a{
 #page-container{
     width: 1400px;
     margin: 0 auto;
-    font-family: 'Martel Sans', sans-serif;
 }
 /* end common */
 
@@ -92,16 +92,22 @@ header nav ul li a i{
     color: white;
     position: relative;
     bottom: 300px;
-}
-.film-overview{
-    padding: 5px 5px;
-    font-size: 12px;
-    max-height: 225px;
-    overflow-y: scroll;
+    padding: 20px 5px 0 5px;
 }
 .film-img-container:hover .film-description{
     display: block;
     cursor: pointer;
 }
-
+.film-description h2{
+    font-weight: 700;
+}
+.film-description p:first-of-type{
+    padding-top: 20px;
+}
+.film-description p{
+    color: grey;
+}
+.film-description p span{
+    color: white;
+}
 /* end main */
