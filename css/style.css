@@ -71,7 +71,7 @@ header nav ul li a i{
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.film-card{
+.card{
     margin: 20px 0;
 }
 .film-img-container{

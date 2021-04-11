@@ -27,7 +27,7 @@
             <!-- nav bar -->
             <header>
                 <nav>
-                    
+
                     <!-- left part of navbar -->
                     <div class="nav-left">
                         <ul>
@@ -60,8 +60,9 @@
             <!-- main -->
             <main>
                 <div class="film-container">
-                    <!-- cards -->
-                    <div class="film-card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
+
+                    <!-- film cards -->
+                    <div class="card" v-if="filmList.length" v-for="(film,index) in filmList" v-show="film.poster_path != null">
                         <div class="film-img-container">
                             <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
                             <!-- hover: film description -->
@@ -69,12 +70,17 @@
                                 <h3><span>{{film.title}}</span></h2>
                                 <p>Titolo originale: <span>{{film.original_title}}</span></p>
                                 <p>Lingia originale: <span>{{film.original_language}}</span></p>
-                                <p>Voto: <span>{{film.vote_average}}</span></p>
+                                <p>Voto:
+                                    <span v-for="i in film.vote_average"><i class="fas fa-star rate-star"></i></span>
+                                    <span v-for="i in ( 5 - film.vote_average)"><i class="far fa-star rate-star"></i></span>
+                                </p>
                             </div>
                             <!-- end hover: film description -->
                         </div>
                     </div>
-                    <!-- end cards -->
+                    <!-- end film cards -->
+
+
                 </div>
             </main>
             <!-- main -->

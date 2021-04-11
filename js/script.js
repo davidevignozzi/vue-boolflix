@@ -3,12 +3,14 @@ var app = new Vue({
     el : '#app',
 
     data: {
-        filmList : [],
+        filmList: [],
+        tvSeriesList: [],
         inSearch: "",
     },
     
     methods: {
 
+        // to search a film
         filmSearch: function() {
             axios.get('https://api.themoviedb.org/3/search/movie', {
               params: {
@@ -21,10 +23,23 @@ var app = new Vue({
             .then((request)=>{
                 const result = request.data.results;
                 this.filmList = result;
+                this.starVote();
                 console.log(result)
             })
             this.inSearch = "";
-        }        
+        },
+        
+        // to search a tv serie
+
+        // star
+        starVote: function() {
+            this.filmList.forEach((film) => {
+              const voteRound = (film.vote_average / 2);
+              let vote = Math.ceil(voteRound);
+              film.vote_average = vote;
+              console.log(film.vote_average);
+            });
+        }
 
     },
 
