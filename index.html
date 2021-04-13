@@ -67,9 +67,12 @@
                             <img class="film-image" :src="'https://image.tmdb.org/t/p/original/' +  film.poster_path" alt="#">
                             <!-- hover: film description -->
                             <div class="film-description">
-                                <h3><span>{{film.title}}</span></h2>
+                                <h2><span>{{film.title}}</span></h2>
                                 <p>Titolo originale: <span>{{film.original_title}}</span></p>
-                                <p>Lingia originale: <span>{{film.original_language}}</span></p>
+                                <!-- languages flag -->
+                                <p v-if="film.original_language == 'en' ? film.original_language = 'gb' : film.original_language == 'ja' ? film.original_language = 'jp' : film.original_language">Lingia originale:
+                                    <img class="flag-language" :src="'https://www.countryflags.io/' + film.original_language + '/flat/64.png'">
+                                </p>
                                 <p>Voto:
                                     <span v-for="i in film.vote_average"><i class="fas fa-star rate-star"></i></span>
                                     <span v-for="i in ( 5 - film.vote_average)"><i class="far fa-star rate-star"></i></span>
