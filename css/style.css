@@ -77,7 +77,7 @@ header nav ul li a i{
 /* film cards */
 .content-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow-x: scroll;
 }
 .card{
