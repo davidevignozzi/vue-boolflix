@@ -32,7 +32,7 @@
                     <div class="nav-left">
                         <ul>
                             <li class="logo"><a href="#"><img src="img/boolflix.png" alt="logo"></a></li>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="#" @click="topRatedContent">Home</a></li>
                             <li><a href="#">Serie Tv</a></li>
                             <li><a href="#">Film</a></li>
                             <li><a href="#" @click="popularContent">Nuovi e Popolari</a></li>
@@ -60,20 +60,79 @@
             <!-- main -->
             <main>
 
+                <!-- Top Rated -->
+                <div id="topRated-content" v-if="filmList.length == 0 && tvSeriesList.length == 0 && popularFilmList.length == 0 && popularSerieList.length == 0">
+                    <h2>Top in Italia:</h2>
+
+                    <!-- film (top rated) -->
+                    <div class="row-title"><h2>Film:</h2></div>
+                    <div class="content-container" id="top-rated-film">
+                        <div class="card" v-if="topRatedFilmList.length" v-for="(topRatedFilm,index) in topRatedFilmList" v-show="topRatedFilm.poster_path != null">
+                            <div class="content-img-container">
+                                <img class="content-image" :src="'https://image.tmdb.org/t/p/original/' +  topRatedFilm.poster_path" alt="#">
+                                <!-- hover: top Rated film description -->
+                                <div class="content-description">
+                                    <h2><span>{{topRatedFilm.title}}</span></h2>
+                                    <p>Titolo originale: <span>{{topRatedFilm.original_title}}</span></p>
+                                    <!-- popular languages flag -->
+                                    <p v-if="topRatedFilm.original_language == 'en' ? topRatedFilm.original_language = 'gb' : topRatedFilm.original_language == 'ja' ? topRatedFilm.original_language = 'jp' : topRatedFilm.original_language">Lingua originale:
+                                        <img class="flag-language" :src="'https://www.countryflags.io/' + topRatedFilm.original_language + '/flat/64.png'">
+                                    </p>
+                                    <p>Voto:
+                                        <span v-for="i in topRatedFilm.vote_average"><i class="fas fa-star rate-star"></i></span>
+                                        <span v-for="i in ( 5 - topRatedFilm.vote_average)"><i class="far fa-star rate-star"></i></span>
+                                    </p>
+                                </div>
+                                <!-- end hover: top Rated film description -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- film (top rated) -->
+
+                    <!-- top Rated tv series -->
+                    <div class="row-title"><h2>Serie TV:</h2></div>
+                    <div class="content-container" id="popular-tv-series">
+                        <!-- top Rated tv series cards -->
+                        <div class="card" v-if="topRatedSerieList.length" v-for="(topRatedSerie,index) in topRatedSerieList" v-show="topRatedSerie.poster_path != null">
+                            <div class="content-img-container">
+                                <img class="content-image" :src="'https://image.tmdb.org/t/p/w300' +  topRatedSerie.poster_path" alt="#">
+                                <!-- hover: top Rated tv series description -->
+                                <div class="content-description">
+                                    <h2><span>{{topRatedSerie.name}}</span></h2>
+                                    <p>Titolo originale: <span>{{topRatedSerie.name}}</span></p>
+                                    <!-- top Rated languages flag -->
+                                    <p v-if="topRatedSerie.original_language == 'en' ? topRatedSerie.original_language = 'gb' : topRatedSerie.original_language == 'ja' ? topRatedSerie.original_language = 'jp' : topRatedSerie.original_language">Lingua originale:
+                                        <img class="flag-language" :src="'https://www.countryflags.io/' + topRatedSerie.original_language + '/flat/64.png'">
+                                    </p>
+                                    <p>Voto:
+                                        <span v-for="i in topRatedSerie.vote_average"><i class="fas fa-star rate-star"></i></span>
+                                        <span v-for="i in ( 5 - topRatedSerie.vote_average)"><i class="far fa-star rate-star"></i></span>
+                                    </p>
+                                </div>
+                                <!-- end hover: top Rated tv series description -->
+                            </div>
+                        </div>
+                        <!-- end top Rated tv series cards -->
+                    </div>
+                    <!-- top Rated tv series -->
+
+                </div>
+                <!-- end Top Rated -->
+
                 <!-- click on "nuovi e popolari" -->
                 <div v-if="filmList.length === 0 && tvSeriesList.length === 0" id="popular-content">
                     <!-- popular film -->
                     <div class="row-title" v-if="popularFilmList.length != 0"><h2>Film Popolari:</h2></div>
                     <div class="content-container" id="popular-film">
-                        <!-- film cards -->
+                        <!-- popular film cards -->
                         <div class="card" v-if="popularFilmList.length" v-for="(popularFilm,index) in popularFilmList" v-show="popularFilm.poster_path != null">
                             <div class="content-img-container">
                                 <img class="content-image" :src="'https://image.tmdb.org/t/p/original/' +  popularFilm.poster_path" alt="#">
-                                <!-- hover: film description -->
+                                <!-- hover: popular film description -->
                                 <div class="content-description">
                                     <h2><span>{{popularFilm.title}}</span></h2>
                                     <p>Titolo originale: <span>{{popularFilm.original_title}}</span></p>
-                                    <!-- languages flag -->
+                                    <!-- popular languages flag -->
                                     <p v-if="popularFilm.original_language == 'en' ? popularFilm.original_language = 'gb' : popularFilm.original_language == 'ja' ? popularFilm.original_language = 'jp' : popularFilm.original_language">Lingua originale:
                                         <img class="flag-language" :src="'https://www.countryflags.io/' + popularFilm.original_language + '/flat/64.png'">
                                     </p>
@@ -82,25 +141,25 @@
                                         <span v-for="i in ( 5 - popularFilm.vote_average)"><i class="far fa-star rate-star"></i></span>
                                     </p>
                                 </div>
-                                <!-- end hover: film description -->
+                                <!-- end hover: popular film description -->
                             </div>
                         </div>
-                        <!-- end film cards -->
+                        <!-- end popular film cards -->
                     </div>
                     <!-- end popular film -->
 
                     <!-- popular tv series -->
                     <div class="row-title" v-if="popularSerieList.length != 0"><h2>Serie TV Popolari:</h2></div>
                     <div class="content-container" id="popular-tv-series">
-                        <!-- tv series cards -->
+                        <!-- popular tv series cards -->
                         <div class="card" v-if="popularSerieList.length" v-for="(popularTvSerie,index) in popularSerieList" v-show="popularTvSerie.poster_path != null">
                             <div class="content-img-container">
                                 <img class="content-image" :src="'https://image.tmdb.org/t/p/w300' +  popularTvSerie.poster_path" alt="#">
-                                <!-- hover: tv series description -->
+                                <!-- hover: popular tv series description -->
                                 <div class="content-description">
                                     <h2><span>{{popularTvSerie.name}}</span></h2>
                                     <p>Titolo originale: <span>{{popularTvSerie.name}}</span></p>
-                                    <!-- languages flag -->
+                                    <!-- popular languages flag -->
                                     <p v-if="popularTvSerie.original_language == 'en' ? popularTvSerie.original_language = 'gb' : popularTvSerie.original_language == 'ja' ? popularTvSerie.original_language = 'jp' : popularTvSerie.original_language">Lingua originale:
                                         <img class="flag-language" :src="'https://www.countryflags.io/' + popularTvSerie.original_language + '/flat/64.png'">
                                     </p>
@@ -109,10 +168,10 @@
                                         <span v-for="i in ( 5 - popularTvSerie.vote_average)"><i class="far fa-star rate-star"></i></span>
                                     </p>
                                 </div>
-                                <!-- end hover: tv series description -->
+                                <!-- end hover: popular tv series description -->
                             </div>
                         </div>
-                        <!-- end tv series cards -->
+                        <!-- end popular tv series cards -->
                     </div>
                     <!-- popular tv series -->
                 </div>

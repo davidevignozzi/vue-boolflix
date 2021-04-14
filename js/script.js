@@ -5,12 +5,48 @@ var app = new Vue({
   data: {
     popularFilmList: [],
     popularSerieList: [],
+    topRatedFilmList: [],
+    topRatedSerieList: [],
     filmList: [],
     tvSeriesList: [],
     inSearch: "",
   },
     
   methods: {
+
+    // topRated
+    topRatedContent: function(){
+      // film
+      axios.get('https://api.themoviedb.org/3/movie/top_rated', {
+        params: {
+          api_key: "11be422449662a8ede36c26b4599a9c8",
+        }
+      })
+      .then((request)=>{
+        const result = request.data.results;
+        this.topRatedFilmList = result;
+        this.voteInStar(this.topRatedFilmList);
+        this.filmList = [];
+        this.popularFilmList = [];
+        console.log(result)
+      })
+
+      // tv series
+      axios.get('https://api.themoviedb.org/3/tv/top_rated', {
+        params: {
+          api_key: "11be422449662a8ede36c26b4599a9c8",
+        }
+      })
+      .then((request)=>{
+        const result = request.data.results;
+        this.topRatedSerieList = result;
+        this.voteInStar(this.topRatedSerieList);
+        this.tvSeriesList = [];
+        this.popularSerieList = [];
+        console.log(result)
+      })
+    },
+    // end topRated 
 
     // popular
     popularContent: function(){
@@ -25,6 +61,7 @@ var app = new Vue({
         this.popularFilmList = result;
         this.voteInStar(this.popularFilmList);
         this.filmList = [];
+        this.topRatedFilmList = [];
         console.log(result)
       })
 
@@ -39,6 +76,7 @@ var app = new Vue({
         this.popularSerieList = result;
         this.voteInStar(this.popularSerieList);
         this.tvSeriesList = [];
+        this.topRatedSerieList = [];
         console.log(result)
       })
     },
@@ -99,6 +137,11 @@ var app = new Vue({
       });
       return popular;
     },
+  },
+
+  created: function(){
+    this.topRatedContent()
   }
+
 })
 Vue.config.devtools = true

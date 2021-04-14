@@ -127,4 +127,8 @@ header nav ul li a i{
 }
 /* end hover: film description */
 /* end film cards */
+
+#topRated-content h2:first-of-type{
+    color: white;
+}
 /* end main */
