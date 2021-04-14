@@ -126,17 +126,6 @@ var app = new Vue({
         }
       });
     },
-
-    // popular
-    popular: function(array){
-      let popular = false;
-      array.forEach((item, i) => {
-        if(item.vote_average>=4){
-          popular = true;
-        }
-      });
-      return popular;
-    },
   },
 
   created: function(){
